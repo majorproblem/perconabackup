@@ -1,0 +1,4 @@
+# run the backup every second hour on the hour
+0 03-23/2 * * * /backup/bin/backup.sh >> /backup/backup.log 2>&1
+# once a day, compress and rotate the log
+00 02 * * * /usr/bin/savelog >> /backup/backup.log 2>&1
