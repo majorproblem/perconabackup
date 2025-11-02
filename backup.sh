@@ -52,7 +52,7 @@ do_full_backup() {
     echo "$(date '+%y%m%d %H:%M:%S') Full backup $(basename $BACKUPDIR)/full"
 
     DIROPT="--target-dir=$BACKUPDIR/full"
-    LOGIN="--username=$MYSQL_USER --password=$MYSQL_PASS"
+    LOGIN="--user=$MYSQL_USER --password=$MYSQL_PASS"
     COMPRESS="--parallel=4 --compress --compress-threads=2"
     xtrabackup $DIROPT $LOGIN $COMPRESS --backup --galera-info > $LOGFILE 2>&1
 
@@ -86,7 +86,7 @@ do_incr_backup() {
     echo "$(date '+%y%m%d %H:%M:%S') Incremental backup $PREVDIR -> $INCRDIR"
 
     DIROPT="--target-dir=$BACKUPDIR/$INCRDIR --incremental_basedir=$BACKUPDIR/$PREVDIR"
-    LOGIN="--username=$MYSQL_USER --password=$MYSQL_PASS"
+    LOGIN="--user=$MYSQL_USER --password=$MYSQL_PASS"
     COMPRESS="--parallel=4 --compress --compress-threads=2"
     xtrabackup $DIROPT $LOGIN $COMPRESS --backup --galera-info > $LOGFILE 2>&1
 
